@@ -1,0 +1,17 @@
+
+// button
+
+.button {
+    background-image: url(../assets/img/button.png);
+    background-size: cover;
+    object-fit: cover;
+    font-family: 'Carolingia', sans-serif;
+    min-width: 60px;
+    color: #fff;
+    font-size: 8px;
+    // height: auto;
+    padding: 8px;
+    // border: 0;
+    // width: 100%;
+    background-position: center;
+}

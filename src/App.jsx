@@ -2,7 +2,7 @@ const App = () => {
 
   return (
     <>
-      aa
+      <button className="button">main menu</button>
     </>
   )
 }
