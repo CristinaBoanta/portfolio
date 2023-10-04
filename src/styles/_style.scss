@@ -51,6 +51,8 @@ $breakpoints: (phone: 320px, tablet: 768px, desktop: $scroll-width-desktop);
 
 .minor-push {
 	margin-bottom: 3em;
+	font-size: 3rem;
+	font-family: Kingthings-Petrock;
 }
 
 .major-push {
@@ -330,3 +332,27 @@ $breakpoints: (phone: 320px, tablet: 768px, desktop: $scroll-width-desktop);
 		display: block;
 	}
 }
+
+
+/////
+/// 
+/// 
+/// 
+
+// .text-container {
+//     display: flex;
+//     align-items: center;  /* Vertically center the content */
+//     height: 5rem; /* Adjust based on your font size + some buffer */
+//     font-size: 4rem;
+//     font-weight: bold;
+//     color: white;
+//     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+//     overflow: hidden;
+// }
+
+// .pixelated-text {
+//     transition: transform 0.3s linear; 
+//     transform-origin: 50% 50%;  /* Ensure scaling is from the center */
+//     width: 100%;
+//     text-align: center;  /* Horizontally center the text */
+// }

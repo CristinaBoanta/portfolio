@@ -68,3 +68,7 @@ System.register(["./scroll.js", "./video-player.js"], function (exports_1, conte
         }
     };
 });
+
+
+/// pixelation
+

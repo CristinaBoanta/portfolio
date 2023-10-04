@@ -1,6 +1,20 @@
 @font-face {
-    font-family: 'Carolingia';  /* Define a name for the font */
-    src: url('../assets/fonts/carolingia.ttf') format('truetype');  /* Point to the font file */
-    font-weight: normal;  /* Set the font weight */
-    font-style: normal;  /* Set the font style */
+    font-family: 'Carolingia';
+    src: url('../assets/fonts/carolingia.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Kingthings-Petrock';
+    src: url('../assets//fonts/Kingthings_Petrock.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal; 
+  }
+
+  @font-face {
+    font-family: 'Kingthings-Petrock-Light';
+    src: url('../assets/fonts/Kingthings_Petrock_light.ttf') format('truetype');
+    // font-weight: normal; 
+    // font-style: normal;  
   }

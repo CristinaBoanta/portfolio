@@ -1,4 +1,61 @@
+import React, { useEffect, useRef, useState } from "react";
+
 export default function App() {
+  const canvasRef = useRef(null);
+  const [pixelation, setPixelation] = useState(25);
+
+  useEffect(() => {
+    const ctx = canvasRef.current.getContext("2d");
+
+    const renderText = () => {
+      ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+
+      ctx.font = '100px Kingthings-Petrock';
+      ctx.fillStyle = "black";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(
+        "It works!",
+        canvasRef.current.width / 2,
+        canvasRef.current.height / 2
+      );
+    };
+
+    const applyPixelation = () => {
+      const scaledWidth = canvasRef.current.width / pixelation;
+      const scaledHeight = canvasRef.current.height / pixelation;
+
+      const offscreenCanvas = document.createElement("canvas");
+      offscreenCanvas.width = canvasRef.current.width;
+      offscreenCanvas.height = canvasRef.current.height;
+      const offscreenCtx = offscreenCanvas.getContext("2d");
+      
+      offscreenCtx.drawImage(canvasRef.current, 0, 0, scaledWidth, scaledHeight);
+
+      ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+
+      ctx.imageSmoothingEnabled = false;
+      ctx.drawImage(
+        offscreenCanvas, 
+        0, 0, scaledWidth, scaledHeight,
+        0, 0, canvasRef.current.width, canvasRef.current.height
+      );
+    };
+
+    renderText();
+    applyPixelation();
+
+    const interval = setInterval(() => {
+      setPixelation((prevPixelation) => {
+        const nextPixelation = Math.max(1.5, prevPixelation - 0.5);
+        if (nextPixelation <= 1.5) clearInterval(interval);
+        return nextPixelation;
+      });
+    }, 100);
+
+    return () => clearInterval(interval);
+  }, [pixelation]);
+
   return (
     <>
       <div className="scroll">
@@ -11,42 +68,9 @@ export default function App() {
         <div className="scroll-view">
           <div className="scroll-content" role="main">
             <div className="minor-push">
-              Parchment content Parchment content Parchment content Parchment
-              content Parchment content Parchment content Parchment content
-              Parchment content Parchment content Parchment content Parchment
-              content Parchment content Parchment content Parchment content
-              Parchment content Parchment content Parchment content Parchment
-              content Parchment content Parchment content Parchment content Parchment content Parchment content Parchment
-              content Parchment content Parchment content Parchment content
-              Parchment content Parchment content Parchment content Parchment
-              content Parchment content Parchment content Parchment content
-              Parchment content Parchment content Parchment content Parchment
-              content Parchment content Parchment content               Parchment content Parchment content Parchment content Parchment
-              content Parchment content Parchment content Parchment content
-              Parchment content Parchment content Parchment content Parchment
-              content Parchment content Parchment content Parchment content
-              Parchment content Parchment content Parchment content Parchment
-              content Parchment content Parchment content               Parchment content Parchment content Parchment content Parchment
-              content Parchment content Parchment content Parchment content
-              Parchment content Parchment content Parchment content Parchment
-              content Parchment content Parchment content Parchment content
-              Parchment content Parchment content Parchment content Parchment
-              content Parchment content Parchment content               Parchment content Parchment content Parchment content Parchment
-              content Parchment content Parchment content Parchment content
-              Parchment content Parchment content Parchment content Parchment
-              content Parchment content Parchment content Parchment content
-              Parchment content Parchment content Parchment content Parchment
-              content Parchment content Parchment content               Parchment content Parchment content Parchment content Parchment
-              content Parchment content Parchment content Parchment content
-              Parchment content Parchment content Parchment content Parchment
-              content Parchment content Parchment content Parchment content
-              Parchment content Parchment content Parchment content Parchment
-              content Parchment content Parchment content               Parchment content Parchment content Parchment content Parchment
-              content Parchment content Parchment content Parchment content
-              Parchment content Parchment content Parchment content Parchment
-              content Parchment content Parchment content Parchment content
-              Parchment content Parchment content Parchment content Parchment
-              content Parchment content Parchment content
+              <div style={{ background: "your_custom_background" }}>
+                <canvas ref={canvasRef} width="600" height="400"></canvas>
+              </div>
             </div>
           </div>
         </div>

@@ -11,12 +11,14 @@
   },
   "dependencies": {
     "framer-motion": "^10.16.4",
+    "html2canvas": "^1.4.1",
+    "include-media": "^1.4.9",
+    "jquery-visible": "^1.2.0",
+    "pixi.js": "^7.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-spring": "^9.7.3",
     "sass": "^1.68.0",
-    "include-media": "^1.4.9",
-    "jquery-visible": "^1.2.0",
     "systemjs": "^0.21.5"
   },
   "devDependencies": {
@@ -29,6 +31,5 @@
     "eslint-plugin-react-refresh": "^0.4.3",
     "vite": "^4.4.5",
     "zone.js": "^0.8.29"
-    
   }
 }
