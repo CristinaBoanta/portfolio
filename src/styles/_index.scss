@@ -8,3 +8,73 @@
     width: 100%;
     min-height: 100vh;
 }
+
+// .character {
+//     display: none;
+//   }
+
+.introduction {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 27rem;
+    .character {
+        height: 12rem;
+        width: 100%;
+        max-width: 27rem;
+        display: flex;
+            .character-container {
+                height: 100%;
+                width: 100%;
+                background-image: url(../assets/img/character.png);
+                object-fit: contain;
+                background-position: center;
+                background-size: cover;
+                position: relative;
+                flex: 60%;
+                .avatar {
+                    position: absolute;
+                    top: 5px;
+                    bottom: 10px;
+                    left: 6px;
+                    right: 4px;
+                    background-image:url(../assets/img/pxArt.png);
+                    // height: 100%;
+                    // width: 100%;
+                    // object-fit: cover;
+                    background-position: center;
+                    background-size: cover;
+                    // margin: 5px;
+                }
+            }
+            .stats {
+                height: 100%;
+                width: 100%;
+                background-image: url(../assets/img/stats.png);
+                object-fit: contain;
+                background-position: center;
+                background-size: cover;
+                position: relative;
+                flex: 40%;
+            }
+        }
+    .name {
+        position: relative;
+        width: 100%;
+        background-image: url(../assets/img/name.png);
+        background-size: cover;
+        min-height: 5rem;
+        .name-text-overlay {
+            position: absolute;
+            top: 0.3rem;
+            bottom: 1rem;
+            left: 1.5rem;
+            // right: 0;
+            color: $gold;
+            font-size: 45px;
+            width: 100%;
+            text-align: left;
+	        font-family: Kingthings-Petrock;
+        }
+    }
+}

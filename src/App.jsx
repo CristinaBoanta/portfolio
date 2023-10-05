@@ -10,12 +10,12 @@ export default function App() {
     const renderText = () => {
       ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
 
-      ctx.font = '100px Kingthings-Petrock';
+      ctx.font = '80px Kingthings-Petrock';
       ctx.fillStyle = "black";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.fillText(
-        "It works!",
+        "Edgy obscure portofolio",
         canvasRef.current.width / 2,
         canvasRef.current.height / 2
       );
@@ -69,9 +69,27 @@ export default function App() {
           <div className="scroll-content" role="main">
             <div className="minor-push">
               <div style={{ background: "your_custom_background" }}>
-                <canvas ref={canvasRef} width="600" height="400"></canvas>
+                <canvas ref={canvasRef} width="800" height="100"></canvas>
               </div>
             </div>
+
+          <div className="introduction">
+            <div className="name">
+              <div className="name-text-overlay">
+                Cristina B
+              </div>
+            </div>
+          <div className="character">
+                <div className="character-container">
+                  <div className="avatar">
+
+                  </div>
+                </div>
+                <div className="stats">
+
+                </div>
+              </div>
+          </div>
           </div>
         </div>
         <div className="scroll-footer">

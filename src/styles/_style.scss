@@ -9,6 +9,10 @@ $scroll-width-desktop: 1024px;
 
 $breakpoints: (phone: 320px, tablet: 768px, desktop: $scroll-width-desktop);
 
+*{
+	cursor: url(../assets/img/cursor1.png) 0 0, auto;
+}
+
 .wrapper {
 	margin: 0 0 -50px;
 	min-height: 100%;
@@ -50,7 +54,7 @@ $breakpoints: (phone: 320px, tablet: 768px, desktop: $scroll-width-desktop);
 }
 
 .minor-push {
-	margin-bottom: 3em;
+	margin-bottom: 1em;
 	font-size: 3rem;
 	font-family: Kingthings-Petrock;
 }
