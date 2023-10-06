@@ -4,77 +4,103 @@
     box-sizing: border-box;
 }
 
+h1 {
+    font-size: 40px;
+}
+
 .container {
     width: 100%;
     min-height: 100vh;
+}
+
+.scroll-padding {
+    padding: 0 5rem;
 }
 
 // .character {
 //     display: none;
 //   }
 
-.introduction {
+// .secondSlide {
+//     padding: 5rem 0;
+// }
+
+
+.skills-and-experience {
     display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 27rem;
-    .character {
-        height: 12rem;
-        width: 100%;
-        max-width: 27rem;
+    justify-content: center;
+    .introduction {
         display: flex;
-            .character-container {
-                height: 100%;
-                width: 100%;
-                background-image: url(../assets/img/character.png);
-                object-fit: contain;
-                background-position: center;
-                background-size: cover;
-                position: relative;
-                flex: 60%;
-                .avatar {
-                    position: absolute;
-                    top: 5px;
-                    bottom: 10px;
-                    left: 6px;
-                    right: 4px;
-                    background-image:url(../assets/img/pxArt.png);
-                    // height: 100%;
-                    // width: 100%;
-                    // object-fit: cover;
+        flex-direction: column;
+        flex: 1;
+        width: 100%;
+        // max-width: 27rem;
+        // box-shadow: 3px 10px 44px -8px rgba(0,0,0,0.75);
+        .character {
+            height: 12rem;
+            width: 100%;
+            // max-width: 27rem;
+            display: flex;
+                .character-container {
+                    height: 100%;
+                    width: 100%;
+                    background-image: url(../assets/img/character.png);
+                    object-fit: contain;
                     background-position: center;
                     background-size: cover;
-                    // margin: 5px;
+                    position: relative;
+                    flex: 60%;
+                    .avatar {
+                        position: absolute;
+                        top: 0;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        margin: 10px 10px 14px 10px;
+                        background-image: url(../assets/img/pxArt.png);
+                        // height: 100%;
+                        // width: 100%;
+                        // object-fit: cover;
+                        background-position: center;
+                        background-size: cover;
+                        // margin: 5px;
+                    }
+                }
+                .stats {
+                    height: 100%;
+                    width: 100%;
+                    background-image: url(../assets/img/stats.png);
+                    background-position: center;
+                    background-size: cover;
+                    position: relative;
+                    flex: 40%;
+                    background-repeat: no-repeat;
                 }
             }
-            .stats {
-                height: 100%;
+        .name {
+            position: relative;
+            width: 100%;
+            background-image: url(../assets/img/name.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+            min-height: 4rem;
+            background-position: center;
+            .name-text-overlay {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                color: $gold;
+                padding-left: 25px;
+                font-size: 45px;
                 width: 100%;
-                background-image: url(../assets/img/stats.png);
-                object-fit: contain;
-                background-position: center;
-                background-size: cover;
-                position: relative;
-                flex: 40%;
+                text-align: left;
+                font-family: Kingthings-Petrock;
             }
         }
-    .name {
-        position: relative;
-        width: 100%;
-        background-image: url(../assets/img/name.png);
-        background-size: cover;
-        min-height: 5rem;
-        .name-text-overlay {
-            position: absolute;
-            top: 0.3rem;
-            bottom: 1rem;
-            left: 1.5rem;
-            // right: 0;
-            color: $gold;
-            font-size: 45px;
-            width: 100%;
-            text-align: left;
-	        font-family: Kingthings-Petrock;
-        }
+    }
+    .about-me {
+        flex: 1;
     }
 }
