@@ -6,6 +6,7 @@
 
 h1 {
     font-size: 40px;
+    margin-bottom: 1rem;
 }
 
 .container {
@@ -25,13 +26,30 @@ h1 {
 //     padding: 5rem 0;
 // }
 
+.firstSlide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .arrow{
+        margin-top: auto;
+        margin-bottom: 1rem;
+    }
+}
+
+// .secondSlide {
+//     padding-top: 4rem;
+// }
+
+.slide {
+    min-height: calc(100vh - 11rem);
+    padding-top: 7rem;
+}
 
 .skills-and-experience {
-    display: flex;
-    justify-content: center;
     .introduction {
         display: flex;
         flex-direction: column;
+        justify-content: center;
         flex: 1;
         width: 100%;
         // max-width: 27rem;
@@ -41,6 +59,7 @@ h1 {
             width: 100%;
             // max-width: 27rem;
             display: flex;
+            box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.45);
                 .character-container {
                     height: 100%;
                     width: 100%;
@@ -85,6 +104,7 @@ h1 {
             background-repeat: no-repeat;
             min-height: 4rem;
             background-position: center;
+            box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.45);
             .name-text-overlay {
                 position: absolute;
                 top: 0;
@@ -97,10 +117,79 @@ h1 {
                 width: 100%;
                 text-align: left;
                 font-family: Kingthings-Petrock;
+                display: flex;
+                align-items: center;
             }
         }
     }
     .about-me {
         flex: 1;
+        font-size: 30px;
+        padding-left: 2rem;
+    }
+
+    .skills-and-experience-first {
+        display: flex;
+        margin-bottom: 30px;
+    }
+}
+
+
+.navigation-grid {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    .nav-grid-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .nav-grid-image {
+            width: 5.5rem;
+            height: 5rem;
+            box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.45);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .nav-grid-text {
+            width: fit-content;
+            font-size: 30px;
+        }
+        .item-skills {
+            background-image: url(../assets/img/skills.jpg);
+        }
+        .item-experience {
+            background-image: url(../assets/img/experience.jpg);
+        }
+        .item-resume {
+            background-image: url(../assets/img/cv.jpg);
+        }
+        .item-contact {
+            background-image: url(../assets/img/contact.jpg);
+        }
+    }
+}
+
+.skills-paragraph {
+    font-size: 30px;
+    text-align: left;
+}
+
+.tech-list {
+    .list-item {
+        font-size: 25px;
+        text-align: left;
+        padding-bottom: 5px;
+        div {
+            display: inline-block;
+        }
+        .list-item-title {
+            color: $gold;
+            background-color: $darkslate;
+            padding: 0 10px;
+        }
+        .list-item-content {
+            padding-left: 10px;
+        }
     }
 }
