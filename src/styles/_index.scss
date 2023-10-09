@@ -43,6 +43,7 @@ h1 {
 .slide {
     min-height: calc(100vh - 11rem);
     padding-top: 7rem;
+    color: $darkbrown;
 }
 
 .skills-and-experience {
@@ -154,6 +155,7 @@ h1 {
         .nav-grid-text {
             width: fit-content;
             font-size: 30px;
+            color: $darkbrown;
         }
         .item-skills {
             background-image: url(../assets/img/skills.jpg);
@@ -193,3 +195,5 @@ h1 {
         }
     }
 }
+
+

@@ -210,3 +210,22 @@
     right:inherit;
   }
 }
+
+// back to top button
+
+.back-to-top-button {
+  // position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.back-to-top-button:hover {
+  background-color: #555;
+}

@@ -1,92 +1,64 @@
 import React, { useEffect, useRef, useState } from "react";
 import Timeline from "./components/Timeline";
+import PixelatedCanvas from "./components/PixelatedCanvas";
 
 export default function App() {
-  const canvasRef = useRef(null);
-  const [pixelation, setPixelation] = useState(25);
+  const [currentSlide, setCurrentSlide] = useState(1);
 
-  const ref = useRef(null);
+  const refSlide2 = useRef(null);
+  const refSlide3 = useRef(null);
+  const refSlide4 = useRef(null);
+  const refSlide5 = useRef(null);
+  const refSlide6 = useRef(null);
+
+  const slideRefs = [
+    null,
+    null,
+    refSlide2,
+    refSlide3,
+    refSlide4,
+    refSlide5,
+    refSlide6,
+  ];
 
   const handleClick = () => {
-    ref.current?.scrollIntoView({ behavior: "smooth" });
+    const nextSlide = currentSlide + 1;
+    if (nextSlide < slideRefs.length) {
+      slideRefs[nextSlide].current?.scrollIntoView({ behavior: "smooth" });
+      setCurrentSlide(nextSlide);
+    }
+  };
+
+  const handleBackToTopClick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   useEffect(() => {
-    const ctx = canvasRef.current.getContext("2d");
-
-    const renderText = () => {
-      ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
-      ctx.font = "60px Kingthings-Petrock";
-      ctx.fillStyle = "black";
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-
-      // An array of lines you want to draw
-      const lines = [
-        "Welcome!",
-        "My name is Cristina",
-        "I am a front-end developer",
-      ];
-
-      const lineHeight = 90; // Adjust this based on your desired spacing
-      const totalHeight = lines.length * lineHeight;
-      const startingY =
-        (canvasRef.current.height - totalHeight) / 2 + lineHeight / 2;
-
-      lines.forEach((line, index) => {
-        ctx.fillText(
-          line,
-          canvasRef.current.width / 2,
-          startingY + index * lineHeight
-        );
-      });
-    };
-
-    const applyPixelation = () => {
-      const scaledWidth = canvasRef.current.width / pixelation;
-      const scaledHeight = canvasRef.current.height / pixelation;
-
-      const offscreenCanvas = document.createElement("canvas");
-      offscreenCanvas.width = canvasRef.current.width;
-      offscreenCanvas.height = canvasRef.current.height;
-      const offscreenCtx = offscreenCanvas.getContext("2d");
-
-      offscreenCtx.drawImage(
-        canvasRef.current,
-        0,
-        0,
-        scaledWidth,
-        scaledHeight
+    const handleScroll = () => {
+      const scrollPositions = slideRefs.map((ref) =>
+        ref?.current ? ref.current.offsetTop : 0
       );
-
-      ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
-      ctx.imageSmoothingEnabled = false;
-      ctx.drawImage(
-        offscreenCanvas,
-        0,
-        0,
-        scaledWidth,
-        scaledHeight,
-        0,
-        0,
-        canvasRef.current.width,
-        canvasRef.current.height
-      );
+      const currentPos = window.scrollY;
+      let found = false;
+      for (let i = 1; i < scrollPositions.length; i++) {
+        if (
+          currentPos >= scrollPositions[i] &&
+          (scrollPositions[i + 1] ? currentPos < scrollPositions[i + 1] : true)
+        ) {
+          if (currentSlide !== i) {
+            setCurrentSlide(i);
+          }
+          found = true;
+          break;
+        }
+      }
+      if (!found && currentSlide !== 1) {
+        setCurrentSlide(1);
+      }
     };
-
-    renderText();
-    applyPixelation();
-
-    const interval = setInterval(() => {
-      setPixelation((prevPixelation) => {
-        const nextPixelation = Math.max(1.5, prevPixelation - 0.5);
-        if (nextPixelation <= 1.5) clearInterval(interval);
-        return nextPixelation;
-      });
-    }, 60);
-
-    return () => clearInterval(interval);
-  }, [pixelation]);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [currentSlide, slideRefs]);
 
   return (
     <>
@@ -105,17 +77,29 @@ export default function App() {
                 className="scroll-padding"
               >
                 <div className="firstSlide slide">
-                  <canvas ref={canvasRef} width="700" height="350"></canvas>
+                  <PixelatedCanvas
+                    lines={[
+                      "Welcome!",
+                      "My name is Cristina",
+                      "I am a front-end developer",
+                    ]}
+                    width="750px"
+                    height="350px"
+                    fontSize="70px"
+                    lineHeight="90"
+                  />
 
-                  <button
-                    onClick={handleClick}
-                    className="scroll-button arrow"
-                  ></button>
+                  {currentSlide < 6 && (
+                    <button
+                      onClick={handleClick}
+                      className="scroll-button arrow"
+                    ></button>
+                  )}
                 </div>
 
                 {/* <div style={{ minHeight: "10vh" }} /> */}
 
-                <div ref={ref} className="secondSlide slide">
+                <div ref={refSlide2} className="secondSlide slide">
                   <h1>Who am I?</h1>
 
                   <div className="skills-and-experience">
@@ -132,12 +116,19 @@ export default function App() {
                         </div>
                       </div>
                       <div className="about-me">
-                        I am a front-end developer with an expertise of 1.5
-                        years. My tech stack is JavaScript, TypeScript, React,
-                        HTML/CSS, SCSS and jQuery.
-                        <br />
-                        <br />I am passionate about tech and retro PC gaming (as
-                        you might have guessed already).
+                        <PixelatedCanvas
+                          lines={[
+                            "I am a front-end developer",
+                            "with an expertise of 1.5 years.",
+                            "My tech stack is JavaScript,",
+                            "TypeScript, React, HTML/CSS,",
+                            "SCSS and jQuery",
+                          ]}
+                          width="500px"
+                          height="400px"
+                          fontSize="40px"
+                          lineHeight="50"
+                        />
                       </div>
                     </div>
 
@@ -160,9 +151,15 @@ export default function App() {
                       </a>
                     </div>
                   </div>
+                  {currentSlide < 6 && (
+                    <button
+                      onClick={handleClick}
+                      className="scroll-button arrow"
+                    ></button>
+                  )}
                 </div>
 
-                <div className="thirdSlide slide" id="skills">
+                <div ref={refSlide3} className="thirdSlide slide" id="skills">
                   <h1>Technologies used</h1>
 
                   <p className="skills-paragraph">
@@ -187,33 +184,39 @@ export default function App() {
                       <div className="list-item-title">
                         Programming languages:
                       </div>
-                      <div className="list-item-content">JavaScript, TypeScript</div>
+                      <div className="list-item-content">
+                        JavaScript, TypeScript
+                      </div>
                     </li>
                     <li className="list-item">
                       <div className="list-item-title">
                         Collaboration tools:
                       </div>
-                      <div className="list-item-content">Jira, Azure DevOps, Slack</div>
+                      <div className="list-item-content">
+                        Jira, Azure DevOps, Slack
+                      </div>
                     </li>
                     <li className="list-item">
                       <div className="list-item-title">
                         CSS tools and libraries:
                       </div>
-                      <div className="list-item-content">Tailwind CSS, Bootstrap, SCSS</div>
+                      <div className="list-item-content">
+                        Tailwind CSS, Bootstrap, SCSS
+                      </div>
                     </li>
                     <li className="list-item">
                       <div className="list-item-title">Package managers: </div>
                       <div className="list-item-content">NPM, Yarn</div>
                     </li>
                     <li className="list-item">
-                      <div className="list-item-title">
-                        Data visualization:
-                      </div>
+                      <div className="list-item-title">Data visualization:</div>
                       <div className="list-item-content">D3.js</div>
                     </li>
                     <li className="list-item">
                       <div className="list-item-title">VM tools: </div>
-                      <div className="list-item-content">Virtualbox, VMware</div>
+                      <div className="list-item-content">
+                        Virtualbox, VMware
+                      </div>
                     </li>
                     <li className="list-item">
                       <div className="list-item-title">CMS: </div>
@@ -229,27 +232,62 @@ export default function App() {
                       <div className="list-item-title">
                         Other minor JavaScript libraries:
                       </div>
-                      <div className="list-item-content">Moment.js, jQuery UI, </div>
+                      <div className="list-item-content">
+                        Moment.js, jQuery UI,{" "}
+                      </div>
                     </li>
                     <li className="list-item">
                       <div className="list-item-title">Others: </div>
-                      <div className="list-item-content">RESTful API, JSON </div>
+                      <div className="list-item-content">
+                        RESTful API, JSON{" "}
+                      </div>
                     </li>
                   </ul>
+
+                  {currentSlide < 6 && (
+                    <button
+                      onClick={handleClick}
+                      className="scroll-button arrow"
+                    ></button>
+                  )}
                 </div>
 
-                <div className="fourthSlide slide" id="experience">
+                <div
+                  ref={refSlide4}
+                  className="fourthSlide slide"
+                  id="experience"
+                >
                   <h1>Professional experience</h1>
 
                   <Timeline />
+                  {currentSlide < 6 && (
+                    <button
+                      onClick={handleClick}
+                      className="scroll-button arrow"
+                    ></button>
+                  )}
                 </div>
 
-                <div className="fifthSlide slide" id="projects">
+                <div ref={refSlide5} className="fifthSlide slide" id="projects">
                   <h1>Projects</h1>
+
+                  {currentSlide < 6 && (
+                    <button
+                      onClick={handleClick}
+                      className="scroll-button arrow"
+                    ></button>
+                  )}
                 </div>
 
-                <div className="sixthSlide slide" id="contact">
+                <div ref={refSlide6} className="sixthSlide slide" id="contact">
                   <h1>Contact me</h1>
+
+                  <button
+                    onClick={handleBackToTopClick}
+                    className="back-to-top-button"
+                  >
+                    Back to Top
+                  </button>
                 </div>
 
                 {/* <div style={{ minHeight: "100vh" }} /> */}
@@ -267,24 +305,4 @@ export default function App() {
       <div className="footer"></div>
     </>
   );
-}
-
-{
-  /* <div className="introduction">
-            <div className="name">
-              <div className="name-text-overlay">
-                Cristina B
-              </div>
-            </div>
-          <div className="character">
-                <div className="character-container">
-                  <div className="avatar">
-
-                  </div>
-                </div>
-                <div className="stats">
-
-                </div>
-              </div>
-          </div> */
 }
